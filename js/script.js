@@ -1,27 +1,28 @@
-// Pig Latin takes the first consonant (or consonant cluster) of an English 
-// word, moves it to the end of the word and suffixes an ay, or if a word
-// begins with a vowel you just add ay to the end. For example, pig becomes
-// igpay, banana becomes ananabay, and aadvark becomes aadvarkay.
-// CREATE THE FUNCTIONS BELOW
+$(document).ready(function() {
+$("#start").click(function () {
+function translatePigLatin(str) {
+    
 
-// Document Ready Function. All of your jQuery should go in here. 
-$( document ).ready(function() {
-  
+  var vowels = ['a','e','i','o','u','A','E','I','O','U'];
+  var slicedArr = [];
+  var newStr = '';
 
+  if (vowels.indexOf(str[0]) >= 0) { // First letter is a vowel, translate immediately
+    return str + 'way';
+  }
 
+  for (var i=0; i<str.length; i++){
+    if (vowels.indexOf(str[i]) >= 0) { // Vowel
+      return newStr + slicedArr.join("") + 'ay';
+    } else { // Consonant
+      // Keep slicing from string until you hit a vowel
+      slicedArr.push(str[i]);
+      newStr = str.slice(i+1);
+    }
+  }
 
+}
+$("#Result").html(translatePigLatin($("#trans").val()));
 });
 
-
-// Create the wordToPigLatin function that takes a word as a parameter and returns a transfromed word. 
-
-
-
-
-
-
-// Create the sentenceToPigLatin function that takes a sentence as a parameter
-	//Loops through all the words in the sentence and transforms each word
-	//It should return a transfromed sentance
-
-
+});
